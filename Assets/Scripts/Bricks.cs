@@ -14,20 +14,20 @@ public class Bricks : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Ball ball = collision.gameObject.GetComponent<Ball>();
-        //ApplyCollisionLogic(ball);
+        Ball ball = collision.gameObject.GetComponent<Ball>();
+        ApplyCollisionLogic(ball);
     }
 
-    /*private void ApplyCollisionLogic(Ball ball)
+    private void ApplyCollisionLogic(Ball ball)
     {
         --this.HitPoints;
 
         if (this.HitPoints <= 0)
         {
-            // SpawnDestroyEffect();
+            SpawnDestroyEffect();
             Destroy(this.gameObject);
         }
-    }*/
+    }
 
     private void SpawnDestroyEffect()
     {
