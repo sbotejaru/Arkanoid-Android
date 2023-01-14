@@ -40,7 +40,6 @@ public class Paddle : MonoBehaviour
             float touchPositionX = mainCamera.ScreenToWorldPoint(new Vector3(touchPositionPixels, 0, 0)).x;
 
             this.transform.position = new Vector3(touchPositionX, paddleInitialY, 0);
-        }
-        
+        }        
     }
 }
