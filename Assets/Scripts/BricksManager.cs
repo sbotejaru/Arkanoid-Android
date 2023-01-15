@@ -7,7 +7,7 @@ using System.Linq;
 
 public class BricksManager : MonoBehaviour
 {
-   #region Singleton
+    #region Singleton
 
     private static BricksManager _instance;
 
@@ -26,42 +26,41 @@ public class BricksManager : MonoBehaviour
     }
     #endregion
 
-   
-    
-   public Sprite[] Sprites;
-   public List<int[,]> LevelsData {get; set;}
+    public static event Action OnLevelLoaded;
 
-   private GameObject bricksContainer;
+    public Sprite[] Sprites;
+    public List<int[,]> LevelsData { get; set; }
 
-   private float shiftAmount = 0.365f;
+    private GameObject bricksContainer;
 
-   public List<Bricks> RemainingBricks {get; set;}
+    private float shiftAmount = 0.365f;
 
-   private float initialBrickSpawnPositionX = -1.96f;
-   private float initialBrickSpawnPositionY = -0.825f;
+    public List<Bricks> RemainingBricks { get; set; }
 
-   public int CurrentLevel;
+    private float initialBrickSpawnPositionX = -1.96f;
+    private float initialBrickSpawnPositionY = -0.825f;
 
-   public int InitialBricksCount {get; set;}
+    public int CurrentLevel;
 
-   public Color[] BrickColors;
+    public int InitialBricksCount { get; set; }
 
-   public Bricks brickPrefab;
+    public Color[] BrickColors;
 
-   private int maxRows = 17;
-   private int maxCols = 12;
+    public Bricks brickPrefab;
 
-   private void Start()
-   {
+    private int maxRows = 17;
+    private int maxCols = 12;
 
-          this.bricksContainer = new GameObject("BricksContainer");
-          this.RemainingBricks = new List<Bricks>();
-          this.LevelsData = this.LoadLevelsData();
-          this.GenerateBricks();
-   }
+    private void Start()
+    {
+        this.bricksContainer = new GameObject("BricksContainer");
+        this.RemainingBricks = new List<Bricks>();
+        this.LevelsData = this.LoadLevelsData();
+        this.GenerateBricks();
+    }
 
-   private void GenerateBricks()
-   {
+    private void GenerateBricks()
+    {
         this.RemainingBricks = new List<Bricks>();
         int[,] currentLevelData = this.LevelsData[this.CurrentLevel];
         float currentSpawnX = initialBrickSpawnPositionX;
@@ -78,7 +77,7 @@ public class BricksManager : MonoBehaviour
                 {
                     Bricks newBrick = Instantiate(brickPrefab, new Vector3(currentSpawnX, currentSpawnY, 0.0f - zShift), Quaternion.identity) as Bricks;
                     newBrick.Init(bricksContainer.transform, this.Sprites[brickType - 1], this.BrickColors[brickType], brickType);
-                
+
                     this.RemainingBricks.Add(newBrick);
                     zShift += 0.0001f;
                 }
@@ -89,17 +88,17 @@ public class BricksManager : MonoBehaviour
                     currentSpawnX = initialBrickSpawnPositionX;
                 }
 
-            } 
-        
+            }
+
             currentSpawnY += shiftAmount;
         }
-    
+
         this.InitialBricksCount = this.RemainingBricks.Count;
+        OnLevelLoaded?.Invoke();
+    }
 
-   }
 
-
-   private List<int[,]> LoadLevelsData()
+    private List<int[,]> LoadLevelsData()
     {
         TextAsset text = Resources.Load("levels") as TextAsset;
 
@@ -138,7 +137,7 @@ public class BricksManager : MonoBehaviour
 
 
 
-   public void LoadLevel(int level)
+    public void LoadLevel(int level)
     {
         this.CurrentLevel = level;
         this.ClearRemaniningBricks();
@@ -166,9 +165,9 @@ public class BricksManager : MonoBehaviour
         {
             this.LoadLevel(this.CurrentLevel);
         }
-    
+
     }
 
-    
+
 
 }
