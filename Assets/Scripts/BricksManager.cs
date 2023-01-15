@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
+
 
 public class BricksManager : MonoBehaviour
 {
@@ -60,7 +62,7 @@ public class BricksManager : MonoBehaviour
 
    private void GenerateBricks()
    {
-        
+        this.RemainingBricks = new List<Bricks>();
         int[,] currentLevelData = this.LevelsData[this.CurrentLevel];
         float currentSpawnX = initialBrickSpawnPositionX;
         float currentSpawnY = initialBrickSpawnPositionY;
@@ -133,4 +135,40 @@ public class BricksManager : MonoBehaviour
 
         return levelsData;
     }
+
+
+
+   public void LoadLevel(int level)
+    {
+        this.CurrentLevel = level;
+        this.ClearRemaniningBricks();
+        this.GenerateBricks();
+
+    }
+
+    private void ClearRemaniningBricks()
+    {
+        foreach (Bricks brick in this.RemainingBricks.ToList())
+        {
+            Destroy(brick.gameObject);
+        }
+    }
+
+    public void LoadNextLevel()
+    {
+        this.CurrentLevel++;
+
+        if (this.CurrentLevel >= this.LevelsData.Count)
+        {
+            GameManager.Instance.ShowVictoryScreen();
+        }
+        else
+        {
+            this.LoadLevel(this.CurrentLevel);
+        }
+    
+    }
+
+    
+
 }

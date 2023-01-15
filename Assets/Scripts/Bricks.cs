@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
+
 public class Bricks : MonoBehaviour
 {
     public int HitPoints = 1;
@@ -24,6 +25,8 @@ public class Bricks : MonoBehaviour
 
         if (this.HitPoints <= 0)
         {
+            BricksManager.Instance.RemainingBricks.Remove(this);
+            OnBrickDestruction?.Invoke(this);
             SpawnDestroyEffect();
             Destroy(this.gameObject);
         }
