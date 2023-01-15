@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     }
     private void OnLiveLost(int remainingLives)
     {
-        LivesText.text = $"LIVES\n{remainingLives}/3";
+        LivesText.text = $"VIETI\n{remainingLives}/3";
     }
     private void OnLevelLoaded()
     {
@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
     {
         this.Score += increment;
         string scoreString = this.Score.ToString().PadLeft(5, '0');
-        ScoreText.text = $"SCORE\n{scoreString}";
+        ScoreText.text = $"SCOR\n{scoreString}";
     }
     private void OnBrickDestruction(Bricks obj)
     {
@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     }
     private void UpdateRemainingBricksText()
     {
-        Target.text = $"TARGET\n{BricksManager.Instance.RemainingBricks.Count}/{BricksManager.Instance.InitialBricksCount}";
+        Target.text = $"TINTA\n{BricksManager.Instance.RemainingBricks.Count}/{BricksManager.Instance.InitialBricksCount}";
     }
     private void OnDisable()
     {

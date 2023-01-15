@@ -1200,9 +1200,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'TARGET
-
-    00/14'
+  m_Text: "\u021AINT\u0102\n00/14"
 --- !u!222 &1241933812
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1661,7 +1659,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'SCORE
+  m_Text: 'SCOR
 
     00000'
 --- !u!222 &1465961105
@@ -2132,9 +2130,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'LIVES
-
-    0/3'
+  m_Text: "VIE\u021AI\n0/3"
 --- !u!222 &1996481943
 CanvasRenderer:
   m_ObjectHideFlags: 0
