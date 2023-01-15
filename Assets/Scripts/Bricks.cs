@@ -45,15 +45,24 @@ public class Bricks : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         this.sr = this.GetComponent<SpriteRenderer>();
-        this.sr.sprite = BricksManager.Instance.Sprites[this.HitPoints -1]; // will be deleted later and set in Init
+
     }
+
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Init(Transform containerTransform, Sprite sprite, Color color, int hitpoints)
+    {
+        this.transform.SetParent(containerTransform);
+        this.sr.sprite = sprite;
+        this.sr.color = color;
+        this.HitPoints = hitpoints;
     }
 }
