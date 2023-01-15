@@ -25,4 +25,8 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameStarted { get; set; }
 
+    private void Start(){
+        //Screen.SetResolution(x,y,false); setare rezolutie googel pixe
+    }
+
 }

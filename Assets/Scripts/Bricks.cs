@@ -27,6 +27,10 @@ public class Bricks : MonoBehaviour
             SpawnDestroyEffect();
             Destroy(this.gameObject);
         }
+        else
+        {
+            this.sr.sprite = BricksManager.Instance.Sprites[this.HitPoints -1];
+        }
     }
 
     private void SpawnDestroyEffect()
@@ -44,6 +48,7 @@ public class Bricks : MonoBehaviour
     void Start()
     {
         this.sr = this.GetComponent<SpriteRenderer>();
+        this.sr.sprite = BricksManager.Instance.Sprites[this.HitPoints -1]; // will be deleted later and set in Init
     }
 
     // Update is called once per frame
