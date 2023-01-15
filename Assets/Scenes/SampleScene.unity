@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 235940972}
   m_Layer: 0
   m_Name: DeathWall
-  m_TagString: Untagged
+  m_TagString: DeathWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,6 +328,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333483695}
   m_CullTransparentMesh: 1
+--- !u!1 &373987132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 373987133}
+  - component: {fileID: 373987134}
+  m_Layer: 0
+  m_Name: CollectibleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &373987133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373987132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 764764780}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373987134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373987132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dbc9663f3d60d241927ec8da60c258b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AvailableBuffs:
+  - {fileID: 5677045070694520563, guid: d3f246f3cffc06640a8ef82614a014eb, type: 3}
+  - {fileID: 6695877212323007041, guid: 63401fb5ffb0bf548b45d60f195336a9, type: 3}
+  AvailableDebuffs:
+  - {fileID: 4854417644934886694, guid: 41d5fa60c00788942a8b0ca1d40c7f73, type: 3}
+  BuffChance: 5
+  DebuffChance: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +640,7 @@ GameObject:
   - component: {fileID: 584781777}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: Untagged
+  m_TagString: Paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -606,6 +657,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c75608a6cc1bb542b38eb1584add659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extendShrinkDuration: 10
+  paddleWidth: 2
+  paddleHeight: 0.25
 --- !u!61 &584781778
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -626,7 +680,7 @@ BoxCollider2D:
     oldSize: {x: 2.15, y: 0.27}
     newSize: {x: 2.15, y: 0.27}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -677,7 +731,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 2.15, y: 0.27}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -811,6 +865,7 @@ Transform:
   - {fileID: 1432667817}
   - {fileID: 1043348572}
   - {fileID: 944716601}
+  - {fileID: 373987133}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -992,9 +1047,9 @@ MonoBehaviour:
   CurrentLevel: 0
   BrickColors:
   - {r: 0, g: 0, b: 0.92941177, a: 1}
-  - {r: 0.92941177, g: 0.08427191, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
   - {r: 0.92941177, g: 0.4971844, b: 0, a: 1}
-  - {r: 0.92941177, g: 0.9152422, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.010668278, a: 1}
   brickPrefab: {fileID: 6673773986504150728, guid: 60e5bd152825a8f448cfecfcaa03998c, type: 3}
 --- !u!1 &1138430349
 GameObject:

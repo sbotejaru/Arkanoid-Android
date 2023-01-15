@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class BallsManager : MonoBehaviour
 {
@@ -43,7 +44,8 @@ public class BallsManager : MonoBehaviour
         InitBall();
     }
 
-    private void Update(){
+    private void Update()
+    {
         if (!GameManager.Instance.IsGameStarted)
         {
             Vector3 paddlePosition = Paddle.Instance.gameObject.transform.position;
@@ -52,12 +54,12 @@ public class BallsManager : MonoBehaviour
 
             if (Input.touchCount > 0)
             {
-               
-            touch = Input.GetTouch(0);   
-            initialBallRb.isKinematic = false;
-            initialBallRb.AddForce(new Vector2(0,initialBallSpeed));
-            GameManager.Instance.IsGameStarted = true;
-             
+
+                touch = Input.GetTouch(0);
+                initialBallRb.isKinematic = false;
+                initialBallRb.AddForce(new Vector2(0, initialBallSpeed));
+                GameManager.Instance.IsGameStarted = true;
+
             }
 
         }
@@ -74,20 +76,27 @@ public class BallsManager : MonoBehaviour
         {
             initialBall
         };
-
-
     }
-
-
-
     public void ResetBalls()
     {
         foreach (var ball in this.Balls.ToList())
         {
             Destroy(ball.gameObject);
         }
-        
+
         InitBall();
-    
+    }
+
+    public void SpawnBalls(Vector3 position, int count)
+    {
+        for (int i = 0; i < count; ++i)
+        {
+            Ball spawnedBall = Instantiate(ballPrefab, position, Quaternion.identity) as Ball;
+
+            Rigidbody2D spawnedBallRb = spawnedBall.GetComponent<Rigidbody2D>();
+            spawnedBallRb.isKinematic = false;
+            spawnedBallRb.AddForce(new Vector2(0, initialBallSpeed));
+            this.Balls.Add(spawnedBall);
+        }
     }
 }
