@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject victoryScreen;
     public GameObject gameOverScreen;
+    public GameObject saveUsernameScreen;
     public int AvailibleLives = 3;
     public int Lives { get; set; }
     public bool IsGameStarted { get; set; }
