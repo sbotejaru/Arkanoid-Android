@@ -19,10 +19,6 @@ namespace DataLayer.Entities
             modelBuilder.Entity<Score>()
                 .Property(e => e.Username)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Score>()
-                .Property(e => e.Points)
-                .IsUnicode(false);
         }
     }
 }

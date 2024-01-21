@@ -16,7 +16,7 @@ namespace DataLayer.Repositories
             {
                 var result = ctx.Scores
                     .Where(e => e.Username == username)
-                    .OrderByDescending(e => int.Parse(e.Points))
+                    .OrderByDescending(e => e.Points)
                     .FirstOrDefault();
 
                 return result;
@@ -28,7 +28,7 @@ namespace DataLayer.Repositories
             using (var ctx = new GameContext())
             {
                 var result = ctx.Scores
-                    .OrderByDescending(e => int.Parse(e.Points))
+                    .OrderByDescending(e => e.Points)
                     .FirstOrDefault();
 
                 return result;

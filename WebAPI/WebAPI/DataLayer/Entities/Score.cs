@@ -16,7 +16,6 @@ namespace DataLayer.Entities
         public string Username { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Points { get; set; }
+        public int Points { get; set; }
     }
 }
