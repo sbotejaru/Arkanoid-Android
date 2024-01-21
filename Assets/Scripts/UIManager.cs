@@ -1,4 +1,3 @@
-using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +8,9 @@ public class UIManager : MonoBehaviour
     public Text Target;
     public Text ScoreText;
     public Text LivesText;
+    public Text HighscoreText;
     public int Score { get; set; }
+    public int Highscore { get; set; }
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         OnLiveLost(GameManager.Instance.AvailibleLives);
+        // set highscore text
     }
     private void OnLiveLost(int remainingLives)
     {
@@ -35,6 +37,9 @@ public class UIManager : MonoBehaviour
         this.Score += increment;
         string scoreString = this.Score.ToString().PadLeft(5, '0');
         ScoreText.text = $"SCOR\n{scoreString}";
+
+        if (this.Score > this.Highscore)
+            HighscoreText.text = $"SCOR MAX\n{scoreString}";
     }
     private void OnBrickDestruction(Bricks obj)
     {
