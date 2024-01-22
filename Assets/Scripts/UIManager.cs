@@ -5,18 +5,26 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    #region Singleton
+
+    private static UIManager _instance;
+
+    public static UIManager Instance => _instance;
+
+    #endregion
+
     public Text Target;
     public Text ScoreText;
     public Text LivesText;
     public Text HighscoreText;
     public int Score { get; set; }
-    public int Highscore { get; set; }
 
     private void Awake()
     {
         Bricks.OnBrickDestruction += OnBrickDestruction;
         BricksManager.OnLevelLoaded += OnLevelLoaded;
         GameManager.OnLiveLost += OnLiveLost;
+        _instance = this;
     }
     private void Start()
     {
@@ -38,7 +46,7 @@ public class UIManager : MonoBehaviour
         string scoreString = this.Score.ToString().PadLeft(5, '0');
         ScoreText.text = $"SCOR\n{scoreString}";
 
-        if (this.Score > this.Highscore)
+        if (this.Score > GameManager.Instance.restAPI.Highscore)
             HighscoreText.text = $"SCOR MAX\n{scoreString}";
     }
     private void OnBrickDestruction(Bricks obj)
