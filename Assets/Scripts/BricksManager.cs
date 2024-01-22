@@ -160,6 +160,9 @@ public class BricksManager : MonoBehaviour
         if (this.CurrentLevel >= this.LevelsData.Count)
         {
             GameManager.Instance.ShowVictoryScreen();
+
+            int score = UIManager.Instance.Score;
+            GameManager.Instance.PostScore(score);
         }
         else
         {
