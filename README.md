@@ -1,7 +1,9 @@
 # Android Arkanoid game made in Unity
 All game code is found in Assets/Scripts
 
+
 Made by Botejaru Stefan-Andrei and Alban Bogdan-Valentin (2023)
+
 Updated and maintained by Botejaru Stefan-Andrei (2024)
 
 Screenshots:
