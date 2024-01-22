@@ -11,16 +11,17 @@ public class RestAPI : MonoBehaviour
     private string baseURL = "https://localhost:7288";
     public Text HighscoreText;
     public InputField UsernameField;
+    public int Highscore { get; set; }
     private string username;
 
     void Start()
     {
-        StartCoroutine(GetHighestScore());
+        //StartCoroutine(GetHighestScore());
     }
 
     IEnumerator GetHighscoreByUsername()
     {
-        using(UnityWebRequest request = UnityWebRequest.Get(baseURL))
+        using (UnityWebRequest request = UnityWebRequest.Get(baseURL + $"/get-highscore-by-username/{this.username}"))
         {
             yield return request.SendWebRequest();
 
