@@ -29,14 +29,23 @@ public class RestAPI : MonoBehaviour
             else
             {
                 string json = request.downloadHandler.text;
+
                 SimpleJSON.JSONNode stats = SimpleJSON.JSON.Parse(json);
+
+                if (stats["points"] != null)
+                {
+                    string scoreString = stats["points"].ToString().PadLeft(5, '0');
+                    this.Highscore = int.Parse(stats["points"]);
+
+                    HighscoreText.text = $"SCOR MAX\n{scoreString}";
+                }
             }
         }
     }
 
     IEnumerator GetHighestScore()
     {
-        using(UnityWebRequest request = UnityWebRequest.Get(baseURL + "/get-highest-score"))
+        using (UnityWebRequest request = UnityWebRequest.Get(baseURL + "/get-highest-score"))
         {
             yield return request.SendWebRequest();
 
