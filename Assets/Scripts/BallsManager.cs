@@ -52,7 +52,7 @@ public class BallsManager : MonoBehaviour
             Vector3 ballPosition = new Vector3(paddlePosition.x, paddlePosition.y + .30f, 0);
             initialBall.transform.position = ballPosition;
 
-            if (Input.touchCount > 0)
+            if (Input.touchCount > 0 && !GameManager.Instance.usernameScreen.activeSelf)
             {
 
                 touch = Input.GetTouch(0);

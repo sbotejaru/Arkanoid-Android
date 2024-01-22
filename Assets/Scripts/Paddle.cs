@@ -29,8 +29,8 @@ public class Paddle : MonoBehaviour
     private Camera mainCamera;
     private float paddleInitialY;
     private float defaultWidth = 200;
-    private float defaultLeftClamp = 280;
-    private float defaultRightClamp = 820;
+    private float defaultLeftClamp = 250;
+    private float defaultRightClamp = 850;
     private SpriteRenderer sr;
     private BoxCollider2D boxCol;
     private Touch touch;
@@ -57,7 +57,7 @@ public class Paddle : MonoBehaviour
 
     void PaddleMovement()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !GameManager.Instance.usernameScreen.activeSelf)
         {
             touch = Input.GetTouch(0);
 
