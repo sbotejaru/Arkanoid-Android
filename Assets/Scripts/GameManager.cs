@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,7 +28,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject victoryScreen;
     public GameObject gameOverScreen;
-    public GameObject saveUsernameScreen;
+    public GameObject usernameScreen;
+    public RestAPI restAPI;
     public int AvailibleLives = 3;
     public int Lives { get; set; }
     public bool IsGameStarted { get; set; }
@@ -50,16 +52,14 @@ public class GameManager : MonoBehaviour
             BallsManager.Instance.ResetBalls();
             GameManager.Instance.IsGameStarted = false;
             BricksManager.Instance.LoadNextLevel();
-
         }
-
     }
 
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
+        restAPI.GetUserHighscore();
     }
 
     private void OnBallDeath(Ball obj)
@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour
             {
                 //gameover
                 gameOverScreen.SetActive(true);
+                int score = UIManager.Instance.Score;
+                PostScore(score);
             }
             else
             {
@@ -80,10 +82,21 @@ public class GameManager : MonoBehaviour
                 BallsManager.Instance.ResetBalls();
                 IsGameStarted = false;
                 BricksManager.Instance.LoadLevel(BricksManager.Instance.CurrentLevel);
-
             }
         }
 
+    }
+
+    public void SetUsername()
+    {
+        restAPI.SetUsername();
+        restAPI.GetUserHighscore();
+        usernameScreen.SetActive(false);
+    }
+
+    public void PostScore(int score)
+    {
+        restAPI.AddScore(score);
     }
 
     private void OnDisable()
