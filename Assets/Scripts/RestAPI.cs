@@ -64,8 +64,31 @@ public class RestAPI : MonoBehaviour
         }
     }
 
+    IEnumerator PostScore(int points)
+    {
+        string data = $"{{ \"username\": \"{this.username}\", \"points\": {points}}}";
+
+        using (UnityWebRequest request = UnityWebRequest.Post(baseURL + "/add-score", data, "application/json"))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError)
+                Debug.LogError(request.error);
+        }
+    }
+
     public void SetUsername()
     {
         this.username = UsernameField.text;
+    }
+
+    public void GetUserHighscore()
+    {
+        StartCoroutine(GetHighscoreByUsername());
+    }
+
+    public void AddScore(int points)
+    {
+        StartCoroutine(PostScore(points));
     }
 }
