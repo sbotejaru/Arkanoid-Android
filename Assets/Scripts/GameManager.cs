@@ -68,23 +68,20 @@ public class GameManager : MonoBehaviour
         {
 
             this.Lives--;
-            if (this.Lives < 1)
+            if (this.Lives < 1) //gameover
             {
-                //gameover
                 gameOverScreen.SetActive(true);
                 int score = UIManager.Instance.Score;
                 PostScore(score);
             }
-            else
+            else //restart level
             {
-                //restart level 
                 OnLiveLost?.Invoke(this.Lives);
                 BallsManager.Instance.ResetBalls();
                 IsGameStarted = false;
                 BricksManager.Instance.LoadLevel(BricksManager.Instance.CurrentLevel);
             }
         }
-
     }
 
     public void SetUsername()
